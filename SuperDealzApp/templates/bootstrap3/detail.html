@@ -1,0 +1,58 @@
+{% extends 'bootstrap3/base_user.html' %}
+{% block content %}
+<div class="col-md-7 col-lg-8 col-xl-8">
+  <div class="page-header bordered">
+    <h1>Mis listas</h1>
+  </div>
+  <div class="item-listing list">
+    <table class="table table-striped">
+      <thead>
+       <tr>
+        <th>Producto</th>
+        <th>Descripcion</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Subtotal</th>
+        <th></th>
+       </tr>
+      </thead>
+      <tbody>
+      {% for lista in listas %} 
+        <tr class="hidden-xs">
+         <td>
+          <img src="{{ lista.id_producto.imagen }}" width="100" height="100" alt="">
+         </td>
+         <td>
+          <p>{{ lista.id_producto.marca }}</p>
+          <p>{{ lista.id_producto.descripcion }}</p>
+          <p>{{ lista.id_producto.medida }}</p>
+         </td>
+         <td>
+          <p>${{ lista.id_precio.precio }}</p>
+         </td>
+         <td>
+          <div>
+           <a href="#"><i class="fa fa-plus"></i></a>
+           <input type="text" name="quantity" value="" autocomplete="off" size="2">
+           <a href="#"><i class="fa fa-minus"></i></a>
+          </div>
+         </td>
+         <td>
+          <p>${{ lista.id_precio.precio }}</p>
+         </td>
+         <!-- <td class="cart_delete">
+          <a class="cart_quantity_delete" href="#"><i class="fa fa-edit"></i></a>
+         </td> -->
+         <td>
+          <a href="#"><i class="fa fa-trash-o"></i></a>
+         </td>
+        </tr>
+      {% endfor %}
+
+      </tbody>
+    </table>
+    <a href="/comparar_productos" class="btn btn-light"><i class="fa fa-usd"></i> Comparar Precios </a>
+  </div>
+</div>
+
+{% endblock %}

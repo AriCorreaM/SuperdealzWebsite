@@ -1,0 +1,164 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>SuperDealz</title>
+
+<!-- Bootstrap -->
+<link href="https://fonts.googleapis.com/css?family=Libre+Franklin:100,200,300,400,500,700" rel="stylesheet" />
+<link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+<link href="{% static 'lib/animate.css' %}" rel="stylesheet">
+<link href="{% static 'lib/selectric/selectric.css' %}" rel="stylesheet">
+<link href="{% static 'lib/swiper/css/swiper.min.css' %}" rel="stylesheet">
+<link href="{% static 'lib/aos/aos.css' %}" rel="stylesheet">
+<link href="{% static 'lib/Magnific-Popup/magnific-popup.css' %}" rel="stylesheet">
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{% static 'lib/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'lib/popper.min.js' %}"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'lib/selectric/jquery.selectric.js' %}"></script>
+<script src="{% static 'lib/swiper/js/swiper.min.js' %}"></script>
+<script src="{% static 'lib/aos/aos.js' %}"></script>
+<script src="{% static 'lib/Magnific-Popup/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'lib/sticky-sidebar/ResizeSensor.min.js' %}"></script>
+<script src="{% static 'lib/sticky-sidebar/theia-sticky-sidebar.min.js' %}"></script>
+<script src="{% static 'lib/lib.js' %}"></script>
+
+
+</head>
+<body>
+<div id="main">
+
+<nav class="navbar navbar-expand-lg navbar-dark" id="menu">
+  <div class="container">
+  <a class="navbar-brand" href="/"><span class="icon-uilove icon-uilove-realestate"></span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu-content" aria-controls="menu-content" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="menu-content">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link dropdown" href="/" role="button" aria-haspopup="true" aria-expanded="false">
+          Inicio <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link dropdown" href="/productos" role="button" aria-haspopup="true" aria-expanded="false">
+          Productos 
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link dropdown" href="/acerca_nosotros" aria-haspopup="true" aria-expanded="false">
+          Nosotros 
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link dropdown" href="/contacto" aria-haspopup="true" aria-expanded="false">
+          Contacto 
+        </a>
+      </li>
+    </ul>
+
+    {% if user.is_authenticated %}
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown user-account">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="user-image" style="background-image:url({% static 'img/demo/profile3.jpg' %});"></span> {{ user.username|capfirst }}
+        </a>
+        <div class="dropdown-menu">
+          <a href="/mi-perfil" class="dropdown-item">Mi Perfil</a>
+          <a href="/mis-listas" class="dropdown-item">Mis Listas</a>
+          <a href="{% url 'superdealz:logout' %}" class="dropdown-item"> Cerrar Sesion</a>
+        </div>
+      </li>
+    </ul>
+    {% else %}
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a href="{% url 'superdealz:login' %}" class="nav-link dropdown">Iniciar Sesion</a>
+      </li>
+      <li class="nav-item">
+        <a href="/registro" class="nav-link dropdown">Registrarse</a>
+      </li>
+    </ul>
+    {% endif %}
+   
+  </div>
+  </div>
+</nav>
+{% block content %}
+{% endblock %}
+<button class="btn btn-primary btn-circle" id="to-top"><i class="fa fa-angle-up"></i></button>
+<footer id="footer" class="bg-light footer-light">
+<div class="container container-1000">
+<div class="row">
+<div class="col-lg-3">
+<p><span class="icon-uilove icon-uilove-realestate"></span></p>
+<address class="mb-3">
+            <strong>Viña del Mar, Chile</strong><br>
+            <abbr title="Phone">T:</abbr> +56973819041
+            </address>
+<div class="footer-social mb-4"><a href="#" class="ml-2 mr-2"><span class="fa fa-twitter"></span></a> <a href="#" class="ml-2 mr-2"><span class="fa fa-facebook"></span></a> <a href="#" class="ml-2 mr-2"><span class="fa fa-instagram"></span></a></div>
+</div>
+<div class="col-lg-2 col-sm-4">
+<div class="footer-links">
+<ul class="list-unstyled">
+<li class="list-title"><a href="#">NOSOTROS</a></li>
+<li><a href="/acerca_nosotros">Nosotros</a></li>
+<li><a href="#">Terminos y Condiciones</a></li>
+<li><a href="/contacto">Contacto</a></li>
+</ul>
+</div>
+</div>
+<div class="col-lg-2 col-sm-4">
+<div class="footer-links">
+<ul class="list-unstyled">
+<li class="list-title"><a href="#">LINKS</a></li>
+<li><a href="/productos">Productos</a></li>
+<li><a href="#">Mi lista</a></li>
+</ul>
+</div>
+</div>
+<div class="col-lg-2 col-sm-4">
+<div class="footer-links">
+<ul class="list-unstyled">
+<li class="list-title"><a href="#">AYUDA</a></li>
+<li><a href="#">FAQ</a></li>
+</ul>
+</div>
+</div>
+<div class="col-lg-3">
+<div class="text-lg-right ml-lg-2">
+<form>
+<div class="list-title">Suscribete</div>
+<div class="input-group input-group-lg">
+  <input type="text" name="email" class="form-control form-control-lg subscribe-input" placeholder="Email">
+<div class="input-group-append ml-0">
+    <button class="btn subscribe-button" type="button"><i class="fa fa-envelope"></i></button>
+  </div>
+</div>
+</form>
+</div>
+</div>
+
+</div>
+<div class="footer-credits d-lg-flex justify-content-lg-between align-items-center">
+
+<div>© 2018 SuperDealz. All Rights Reserved</div>
+</div>
+</div>
+</footer>
+</div>
+</body>
+</html>

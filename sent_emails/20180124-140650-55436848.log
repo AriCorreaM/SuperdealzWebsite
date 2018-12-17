@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on FB Login
+From: webmaster@localhost
+To: ari.corream@gmail.com
+Date: Wed, 24 Jan 2018 21:06:50 -0000
+Message-ID: <20180124210650.16268.80821@Home.hitronhub.home>
+
+
+You're receiving this email because you requested a password reset for your user account at FB Login.
+
+Please go to the following page and choose a new password:
+
+http://localhost:8000/reset-pass/confirmar/Mg-4t4-506393b2fa9ec321a9a7/
+
+Your username, in case you've forgotten: aricorrea
+
+Thanks for using our site!
+
+The FB Login team
+
+
+
+-------------------------------------------------------------------------------

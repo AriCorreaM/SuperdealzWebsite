@@ -1,0 +1,12 @@
+django~=2.0.1
+requests<3
+psycopg2
+django-bootstrap3~=9.1.0
+django-bootstrap-typeahead
+whoosh
+django-haystack
+django-widget-tweaks
+Pillow
+django-allauth
+psycopg2-binary
+ipython

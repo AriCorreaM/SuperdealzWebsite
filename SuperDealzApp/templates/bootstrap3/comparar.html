@@ -1,0 +1,181 @@
+{% extends 'bootstrap3/base_user.html' %}
+{% block content %}
+<div id="content">
+  <div class="container">
+    <div class="row justify-content-md-center">
+          <div class="col col-lg-12 col-xl-10">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Comparar Productos</li>
+            </ol>
+            </nav>
+        <h1 class="main-title centered"><span>Comparar Productos</span></h1>
+        <table class="table table-striped product_comparison">
+          <thead>
+            <tr>
+              <th style="width: 20%">&nbsp;</th>
+              <th>
+                <div>
+                  <a href="/www.lider.cl" class=""><img class="img-fluid" alt="" src="static/img/super_logo/Líder_logo.png" width="100" height="100">
+                  <p class="h6 mt-3"><small><i class="fa fa-external-link"></i> www.lider.cl </small></p></a>
+                </div>
+              </th>
+              <th>
+                <div>
+                  <a href="/www.tottus.cl" class=""><img class="img-fluid" alt="" src="static/img/super_logo/Tottus.png" width="100" height="100">
+                  <p class="h6 mt-3"><small><i class="fa fa-external-link"></i> www.tottus.cl </small></p></a>
+                </div>
+              </th>
+              <th>
+                <div>
+                  <a href="www.jumbo.cl" class=""><img class="img-fluid" alt="" src="static/img/super_logo/Logo_Jumbo_Cencosud.png" width="100" height="100">
+                  <p class="h6 mt-3"><small><i class="fa fa-external-link"></i> www.jumbo.cl</small></p></a>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in comparar %}
+              <tr class="hidden-xs">
+                <td>
+                  <div class="col-lg-6">
+                    <div class="item">
+                      <div align="center" class="item-image"><a href="#"><img src="{{ item.producto.imagen }}" class="img-fluid" alt="" width="100" height="100"></a>
+                      </div>
+                      <div class="item-info">
+                        <p class="h6 mt-3"> <small> {{ item.producto.nombre }} </small> </p>
+                        <p class="h6 mt-3"> <small> {{ item.producto.marca }} </small> </p>
+                        <p class="h6 mt-3"> <small> {{ item.producto.medida }} </small> </p>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                {% for match in matching_results %}
+                  {% if item.precio.supermercado.id_super == 1 %}
+                    <td>
+                      <div class="col-lg-6">
+                        <div class="item">
+                          <div class="item-meta">
+                            {% if item.precio.precio >= match.precio %}
+                              <p class="h6 mt-3"> ${{item.precio.precio}} <br> <small> Best Price {{item.precio.actualizado|date:"d/m/Y"}}</small> </p>
+                            {% else %}
+                              <p class="h6 mt-3"> ${{match.precio}} <br> <small> Regular price {{match.actualizado|date:"d/m/Y"}} </small> </p>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  {% else %}
+                    {% if match.precio.supermercado.id_super == 1 %}
+                    <td>
+                      <div class="col-lg-6">
+                        <div class="item">
+                          <div class="item-meta">
+                            {% if item.precio.precio >= match.precio %}
+                              <p class="h6 mt-3"> ${{item.precio.precio}} <br> <small> Best Price {{item.precio.actualizado|date:"d/m/Y"}}</small> </p>
+                            {% else %}
+                              <p class="h6 mt-3"> ${{match.precio}} <br> <small> Regular price {{match.actualizado|date:"d/m/Y"}} </small> </p>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    {% else %}
+                    <td>
+                      <p class="h6 mt-3"> No encontrado Lider</p>
+                    </td>
+                    {% endif %}
+                  {% endif %}
+                  {% if item.supermercado.id_super == 2 %}
+                    <td>
+                      <div class="col-lg-6">
+                        <div class="item">
+                          <div class="item-meta">
+                            {% if item.precio.precio >= match.precio %}
+                              <p class="h6 mt-3"> ${{item.precio.precio}} <br> <small> Best price {{item.precio.actualizado|date:"d/m/Y"}}</small> </p>
+                            {% else %}
+                              <p class="h6 mt-3"> ${{match.precio}} <br> <small> Regular price {{match.actualizado|date:"d/m/Y"}} </small> </p>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  {% else %}
+                    {% if match.precio.supermercado.id_super == 2 %}
+                    <td>
+                      <div class="col-lg-6">
+                        <div class="item">
+                          <div class="item-meta">
+                            {% if item.precio.precio >= match.precio %}
+                              <p class="h6 mt-3"> ${{item.precio.precio}} <br> <small> Best Price {{item.precio.actualizado|date:"d/m/Y"}}</small> </p>
+                            {% else %}
+                              <p class="h6 mt-3"> ${{match.precio}} <br> <small> Regular price {{match.actualizado|date:"d/m/Y"}} </small> </p>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    {% else %}
+                    <td>
+                      <p class="h6 mt-3"> No encontrado Tottus</p>
+                    </td>
+                    {% endif %}
+                  {% endif %}
+                  {% if item.precio.supermercado.id_super == 3 %}
+                      <td>
+                        <div class="col-lg-6">
+                          <div class="item">
+                            <div class="item-meta">
+                              {% if item.precio.precio <= lowest_price %}
+                                <p class="h6 mt-3"> ${{item.precio.precio}} <br> <small> Best price {{item.precio.actualizado|date:"d/m/Y"}}</small> </p>
+                              {% else %}
+                                <p class="h6 mt-3"> ${{match.precio}} <br> <small> Not best price {{match.actualizado|date:"d/m/Y"}} </small> </p>
+                              {% endif %}
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                  {% else %}
+                    {% if match.precio.supermercado.id_super == 3 %}
+                    <td>
+                      <div class="col-lg-6">
+                        <div class="item">
+                          <div class="item-meta">
+                            {% if item.precio.precio >= match.precio %}
+                              <p class="h6 mt-3"> ${{item.precio.precio}} <br> <small> Best Price {{item.precio.actualizado|date:"d/m/Y"}}</small> </p>
+                            {% else %}
+                              <p class="h6 mt-3"> ${{match.precio}} <br> <small> Regular price {{match.actualizado|date:"d/m/Y"}} </small> </p>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    {% else %}
+                    <td>
+                      <p class="h6 mt-3"> No encontrado Jumbo</p>
+                    </td>
+                    {% endif %}
+                  {% endif %}
+                <td>
+                  <div>
+                    <a href="#"><i class="fa fa-trash-o"></i></a>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            {% endfor %}
+          </tbody>
+        </table>
+
+        <a href="/productos" class="btn btn-light"><i class="fa fa-plus"></i> Agregar  productos </a>
+        <a href="/productos" class="btn btn-light"><i class="fa fa-paper-plane-o"></i> Enviar lista por correo </a>
+        <a href="/productos" class="btn btn-light" onClick="javascript:window.print()"><i class="fa fa-print"></i> Imprimir </a>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/static/js/bootstrap.js"></script>
+
+{% endblock %}
+

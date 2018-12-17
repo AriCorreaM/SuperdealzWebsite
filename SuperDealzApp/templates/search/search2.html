@@ -1,0 +1,202 @@
+{% extends 'bootstrap3/base_user.html' %}
+{% block content %}
+<form method="get" action="/search">
+<div class="container">
+  <div class="search-form">
+    <div class="card">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group">
+            <input type="text" class="form-control form-control-lg" placeholder="Buscar por Marca, Nombre, Categoria." name="q" value="{{ query }}">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-sm-5">
+              <div class="form-group">
+                <button type="submit" class="btn btn-lg btn-primary btn-block">Buscar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-12 col-xl-10">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Productos</li>
+        </ol>
+      </nav>
+      <div class="page-header">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="content">
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col col-lg-12 col-xl-10">
+        <div class="row has-sidebar">
+          <div class="col-md-4 col-lg-3">
+            <button id="toggle-filters" class="btn btn-primary btn-circle mobile-filter"><i class="fa fa-filter"></i></button>
+            <div id="sidebar" class="sidebar-left">
+              <button class="close-panel btn btn-white"><i class="fa fa-long-arrow-left"></i></button>
+              <div class="sidebar_inner">
+                <div id="filters">
+                  <div class="card">
+                    <div class="card-header">
+                      <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" href="#p_budget" aria-expanded="true" aria-controls="p_type"> Precios <i class="fa fa-caret-down float-right"></i> </a> </h4>
+                    </div>
+                    <div id="p_budget" class="panel-collapse collapse" role="tabpanel">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <input type="text" class="form-control input-sm" placeholder="Min">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <input type="text" class="form-control input-sm" placeholder="Max">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header">
+                      <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" href="#p_type" aria-expanded="true" aria-controls="p_type"> Categorias <i class="fa fa-caret-down float-right"></i> </a> </h4>
+                    </div>
+                    <div id="p_type" class="panel-collapse collapse show" role="tabpanel">
+                      <div class="card-body">
+                          <div class="checkbox ">
+                              <input type="checkbox" value="1" id="congelados">
+                              <label for="congelados">Alimentos Congelados</label>
+                          </div>
+                          <div class="checkbox ">
+                              <input type="checkbox" value="1" id="frescos">
+                              <label for="frescos">Frescos</label>
+                          </div>
+                          <div class="checkbox ">
+                              <input type="checkbox" value="1" id="almacen">
+                              <label for="almacen">Almacen</label>
+                          </div>
+                          <div class="checkbox ">
+                              <input type="checkbox" value="1" id="alcohol">
+                              <label for="alcohol">Bebidas Con Alcohol</label>
+                          </div>
+                          <div class="checkbox ">
+                              <input type="checkbox" value="1" id="sinalcohol">
+                              <label for="sinalcohol">Bebidas Sin Alcohol</label>
+                          </div>
+                          <div class="checkbox ">
+                              <input type="checkbox" value="1" id="bebes">
+                              <label for="bebes">Bebes</label>
+                          </div>
+                          <div class="checkbox ">
+                              <input type="checkbox" value="1" id="mascotas">
+                              <label for="mascotas">Mascotas</label>
+                          </div>
+                          <div class="checkbox ">
+                              <input type="checkbox" value="1" id="limpieza">
+                              <label for="limpieza">Limpieza</label>
+                          </div>
+                          <div class="checkbox ">
+                              <input type="checkbox" value="1" id="personal">
+                              <label for="personal">Cuidado Personal</label>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8 col-lg-9">
+            <div class="sorting">
+              <div class="row justify-content-between">
+              <div class="col-sm-5 col-md-5 col-lg-4 col-xl-3">
+              <div class="form-group">
+                  <select class="form-control ui-select">
+                    <option selected="selected">Mas Recientes</option>
+                    <option>Highest price</option>
+                    <option>Lowest price</option>
+                    <option>Mas Populares</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3">
+              <div id="btnContainer"> 
+                <button class="btn btn-light" onclick="gridView()"><i class="fa fa-th"></i></button> 
+                <button class="btn btn-light active" onclick="listView()"><i class="fa fa-bars"></i></button> 
+              </div>
+              </div>
+              </div>                
+            </div>
+            <div class="clearfix"></div>
+          
+            {% if query %}
+            <div class="item-listing grid">
+              {% for result in page.object_list|slice:":10" %}
+              <div style="border-style:ridge;border-width:1px; height: 100px;" class="row" data-aos="fade-up">
+                <div class="col-lg-6">
+                  <div class="item">
+                    <div class="item-image"><a href="#"><img src="{{ result.object.imagen }}" class="img-fluid" alt="">
+                      <div class="item-meta">
+                        <div class="item-price">${{result.object.precio}} <small> Fecha: {{ result.object.actualizado|date:"d/m/Y" }}</small>
+                        <!-- <small> Fecha: {{precios.fecha}} Supermercado: {{precios.id_super}}</small --> </div>
+                      </div>
+                      <div class="item-badges"> 
+                        <div class="item-badge-left">Sponsored</div>
+                        <div class="item-badge-right">Oferta</div>
+                      </div>
+                      </a> 
+                      <a href="" class="save-item"><i class="fa fa-plus"></i></a> </div>
+                    <div class="item-info">
+                      <h3 class="item-details-i">{{ result.object.nombre }}</h3>
+                      <h3 class="item-title">{{ result.object.marca }}</h3>
+                      <!-- <h3 class="item-title">{{ item.descripcion }}</h3> -->
+                      <h3 class="item-title">{{ result.object.medida }}</h3>
+                      <div class="item-location"><i class="fa fa-map-marker"></i> {{ result.object.supermercado }} </div> <!-- nombre de super y ubicacion -->
+                    </div>
+                  </div>
+                </div>
+                
+              {% empty %}
+                <h1 style="font-size:20px;text-align: center;"> No se han encontrado resultados.</h1>
+              {% endfor %}
+            </div>
+            {% if page.has_previous or page.has_next %}
+            <nav aria-label="Page navigation">
+              <ul class="pagination">
+                {% if page.has_previous %}
+                  <li class="page-item"><a class="page-link" href="?q={{ query }}&amp;page={{ page.previous_page_number }}">&laquo;</a></li>
+                {% endif %}
+
+                {% for i in page.paginator.page_range %}
+                  <li class="page-item {% if page.number == i  %}active{% endif %}"><a class="page-link" href="?q={{query}}&amp;page={{i}}">{{i}}</a></li>
+                {% endfor %}
+
+                {% if page.has_next %}
+                  <li class="page-item"> <a class="page-link" href="?q={{ query }}&amp;page={{ page.next_page_number }}">&raquo;</a></li>
+                {% endif %}
+             </ul>
+            </nav>
+            {% endif %}
+            {% else %}
+            {# Show some example queries to run, maybe query syntax, something else? #}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+{% endblock %}

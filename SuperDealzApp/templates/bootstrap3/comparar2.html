@@ -1,0 +1,242 @@
+{% extends 'bootstrap3/base_principal.html' %}
+{% block content %}
+<div id="content">
+  <div class="container">
+    <div class="row justify-content-md-center">
+          <div class="col col-lg-12 col-xl-10">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Comparar Productos</li>
+            </ol>
+            </nav>
+        <h1 class="main-title centered"><span>Comparar Productos</span></h1>
+        <table class="table table-striped product_comparison">
+          <thead>
+            <tr>
+              <th style="width: 20%">&nbsp;</th>
+              <th>
+                <div>
+                  <a href="www.lider.cl" class=""><img class="img-fluid" alt="" src="static/img/super_logo/Líder_logo.png" width="100" height="100"></a>
+                  <p class="h6 mt-3"><small><i class="fa fa-external-link"></i> www.lider.cl </small></p>
+                  <!-- <p><a href="#"> Price: £3,350,000</a></p> -->
+                  <!-- <p><a class="btn btn-primary" href="property_single.html">Contact agent</a></p> -->
+                </div>
+              </th>
+              <th> 
+                <div>
+                  <a href="www.tottus.cl" class=""><img class="img-fluid" alt="" src="static/img/super_logo/Tottus.png" width="100" height="100"></a>
+                  <p class="h6 mt-3"><small><i class="fa fa-external-link"></i> www.tottus.cl </small></p>
+                  <!-- <p><a href="#"> Price: £3,350,000</a></p>
+                  <p><a class="btn btn-primary" href="property_single.html">Contact agent</a></p> -->
+                </div>
+              </th>
+              <th> 
+                <div>
+                  <a href="www.jumbo.cl" class=""><img class="img-fluid" alt="" src="static/img/super_logo/Logo_Jumbo_Cencosud.png" width="100" height="100"></a>
+                  <p class="h6 mt-3"><small><i class="fa fa-external-link"></i> www.jumbo.cl</small></p>
+                  <!--  <p><a href="#"> Price: £3,350,000</a></p>
+                  <p><a class="btn btn-primary" href="property_single.html">Contact agent</a></p> -->
+                </div>
+              </th>
+
+              <!-- <th>
+                <p>Total:</p>
+                <p>Total Lider:</p>
+                <p>Total Jumbo:</p>
+                <p>Total Tottus:</p>
+              </th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="hidden-xs">
+              <td>
+                <p>Producto 1</p>
+              </td>
+              {% for item in comparar %}
+                {% if item.precio.supermercado.id_super == 1 %}
+                <td>
+                  <div class="col-lg-6">
+                    <div class="item">
+                      <div align="center" class="item-image"><a href="#"><img src="{{ item.producto.imagen }}" class="img-fluid" alt="" width="100" height="100"></a>
+                      </div>
+                      <div class="item-meta">
+                        {% if item.precio.precio <= lowest_price and item.precio.fecha <= lowest_super %}
+                        <div class="col-xs-4" style="color:#424b5e; font-size:.8em"> ${{item.precio.precio}} <small> Best Price {{item.precio.fecha|date:"d/m/Y"}}</small>
+                        </div>
+                        {% else %}
+                        <div style="color:#424b5e; font-size:.8em"> ${{item.precio.precio}} <small> Not best price {{item.precio.fecha|date:"d/m/Y"}}</small>
+                        </div>
+                        {% endif %}
+                      </div>
+                      <div class="item-info">
+                        <p>{{ item.producto.nombre }}</p>
+                        <p>{{ item.producto.marca }}</p>
+                        <p>{{ item.producto.medida }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                {% else %}
+                  {% for cont in contiene_nombre %}
+                    {% if cont.supermercado.id_super == 1 %}
+                      <td>
+                        <div class="col-lg-6">
+                          <div class="item">
+                            <div align="center" class="item-image"><a href="#"><img src="{{ cont.producto.imagen }}" class="img-fluid" alt="" width="100" height="100"></a>
+                            </div>
+                            <div class="item-meta">
+                              {% if cont.precio <= lowest_price and cont.fecha <= lowest_super %}
+                              <div class="col-xs-4" style="color:#424b5e; font-size:.8em"> ${{cont.precio}} <small> Best Price {{cont.fecha|date:"d/m/Y"}}</small>
+                              </div>
+                              {% else %}
+                              <div style="color:#424b5e; font-size:.8em"> ${{cont.precio}} <small> Not best price {{cont.fecha|date:"d/m/Y"}}</small>
+                              </div>
+                              {% endif %}
+                            </div>
+                            <div class="item-info">
+                              <p>{{ cont.producto.nombre }}</p>
+                              <p>{{ cont.producto.marca }}</p>
+                              <p>{{ cont.producto.medida }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    {% else %}
+                      <td>
+                        <p>No encontrado</p>
+                      </td>
+                    {% endif %}
+                  {% endfor %}
+              {% endif %}
+              
+              {% if item.precio.supermercado.id_super == 2 %}
+              <td>
+                  <div class="col-lg-6">
+                    <div class="item">
+                      <div align="center" class="item-image"><a href="#"><img src="{{ item.producto.imagen }}" class="img-fluid" alt="" width="100" height="100"></a>
+                      </div>
+                      <div class="item-meta">
+                        {% if item.precio.precio <= lowest_price and item.precio.fecha <= lowest_super %}
+                        <div class="col-xs-4" style="color:#424b5e; font-size:.8em"> ${{item.precio.precio}} <small> Best Price {{item.precio.fecha|date:"d/m/Y"}}</small>
+                        </div>
+                        {% else %}
+                        <div style="color:#424b5e; font-size:.8em"> ${{item.precio.precio}} <small> Not best price {{item.precio.fecha|date:"d/m/Y"}}</small>
+                        </div>
+                        {% endif %}
+                      </div>
+                      <div class="item-info">
+                        <p>{{ item.producto.nombre }}</p>
+                        <p>{{ item.producto.marca }}</p>
+                        <p>{{ item.producto.medida }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                {% else %}
+                  {% for cont in contiene_nombre %}
+                    {% if cont.supermercado.id_super == 1 %}
+                      <td>
+                        <div class="col-lg-6">
+                          <div class="item">
+                            <div align="center" class="item-image"><a href="#"><img src="{{ cont.producto.imagen }}" class="img-fluid" alt="" width="100" height="100"></a>
+                            </div>
+                            <div class="item-meta">
+                              {% if cont.precio <= lowest_price and cont.fecha <= lowest_super %}
+                              <div class="col-xs-4" style="color:#424b5e; font-size:.8em"> ${{cont.precio}} <small> Best Price {{cont.fecha|date:"d/m/Y"}}</small>
+                              </div>
+                              {% else %}
+                              <div style="color:#424b5e; font-size:.8em"> ${{cont.precio}} <small> Not best price {{cont.fecha|date:"d/m/Y"}}</small>
+                              </div>
+                              {% endif %}
+                            </div>
+                            <div class="item-info">
+                              <p>{{ cont.producto.nombre }}</p>
+                              <p>{{ cont.producto.marca }}</p>
+                              <p>{{ cont.producto.medida }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    {% else %}
+                      <td>
+                        <p>No encontrado</p>
+                      </td>
+                    {% endif %}
+                  {% endfor %}
+              {% endif %}
+              
+              {% if item.precio.supermercado.id_super == 3 %}
+              <td>
+                  <div class="col-lg-6">
+                    <div class="item">
+                      <div align="center" class="item-image"><a href="#"><img src="{{ item.producto.imagen }}" class="img-fluid" alt="" width="100" height="100"></a>
+                      </div>
+                      <div class="item-meta">
+                        {% if item.precio.precio <= lowest_price and item.precio.fecha <= lowest_super %}
+                        <div class="col-xs-4" style="color:#424b5e; font-size:.8em"> ${{item.precio.precio}} <small> Best Price {{item.precio.fecha|date:"d/m/Y"}}</small>
+                        </div>
+                        {% else %}
+                        <div style="color:#424b5e; font-size:.8em"> ${{item.precio.precio}} <small> Not best price {{item.precio.fecha|date:"d/m/Y"}}</small>
+                        </div>
+                        {% endif %}
+                      </div>
+                      <div class="item-info">
+                        <p>{{ item.producto.nombre }}</p>
+                        <p>{{ item.producto.marca }}</p>
+                        <p>{{ item.producto.medida }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                {% else %}
+                  {% for cont in contiene_nombre %}
+                    {% if cont.supermercado.id_super == 1 %}
+                      <td>
+                        <div class="col-lg-6">
+                          <div class="item">
+                            <div align="center" class="item-image"><a href="#"><img src="{{ cont.producto.imagen }}" class="img-fluid" alt="" width="100" height="100"></a>
+                            </div>
+                            <div class="item-meta">
+                              {% if cont.precio <= lowest_price and cont.fecha <= lowest_super %}
+                              <div class="col-xs-4" style="color:#424b5e; font-size:.8em"> ${{cont.precio}} <small> Best Price {{cont.fecha|date:"d/m/Y"}}</small>
+                              </div>
+                              {% else %}
+                              <div style="color:#424b5e; font-size:.8em"> ${{cont.precio}} <small> Not best price {{cont.fecha|date:"d/m/Y"}}</small>
+                              </div>
+                              {% endif %}
+                            </div>
+                            <div class="item-info">
+                              <p>{{ cont.producto.nombre }}</p>
+                              <p>{{ cont.producto.marca }}</p>
+                              <p>{{ cont.producto.medida }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    {% else %}
+                      <td>
+                        <p>No encontrado</p>
+                      </td>
+                    {% endif %}
+                  {% endfor %}
+              {% endif %}
+              <td>
+                <div>
+                  <a href="#"><i class="fa fa-trash-o"></i></a>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <a href="/productos" class="btn btn-light"><i class="fa fa-plus"></i> Agregar  productos </a>
+        <a href="/productos" class="btn btn-light"><i class="fa fa-paper-plane-o"></i> Enviar lista por correo </a>
+        <a href="/productos" class="btn btn-light"><i class="fa fa-print"></i> Imprimir </a>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/static/js/bootstrap.js"></script>
+
+{% endblock %}

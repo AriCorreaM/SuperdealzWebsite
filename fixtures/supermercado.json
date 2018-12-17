@@ -1,0 +1,35 @@
+[
+  {
+    "model": "superdealzapp.supermercado",
+    "pk": 1,
+    "fields": {
+      "nombre": "Lider",
+      "main_url": "https://www.lider.cl/supermercado/",
+      "term_uso": "https://www.lider.cl/electrohogar/info/terminos",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/2/22/L%C3%ADder_logo.svg",
+      "estado": true
+    }
+  },
+  {
+    "model": "superdealzapp.supermercado",
+    "pk": 2,
+    "fields": {
+      "nombre": "Tottus",
+      "main_url": "http://www.tottus.cl/tottus",
+      "term_uso": "http://www.tottus.cl/tottus/terminoCondiciones",
+      "logo": "http://www.tottus.cl/static/1780a//img/img-com/icons/sup_logo-tottus.png",
+      "estado": true
+    }
+  },
+  {
+    "model": "superdealzapp.supermercado",
+    "pk": 3,
+    "fields": {
+      "nombre": "Jumbo",
+      "main_url": "https://nuevo.jumbo.cl/",
+      "term_uso": "https://nuevo.jumbo.cl/institucional/terminos-condiciones",
+      "logo": "https://agenciaodotcom1.files.wordpress.com/2013/10/logo-jumbo.png?w=310",
+      "estado": true
+    }
+  }
+]

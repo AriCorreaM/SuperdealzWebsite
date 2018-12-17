@@ -1,0 +1,7 @@
+{{ object.marca }}
+{{ object.nombre }}
+{{ object.descripcion }}
+{{ object.medida }}
+{{ object.imagen}}
+{{ object.precio }}
+{{ object.fecha }}

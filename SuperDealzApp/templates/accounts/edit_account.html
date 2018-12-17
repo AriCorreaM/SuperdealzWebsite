@@ -1,0 +1,49 @@
+{% extends 'bootstrap3/base_user.html' %}
+{% block content %}
+<div class="clearfix"></div>
+<div id="content">
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col col-lg-12 col-xl-10">
+        <div class="row has-sidebar">
+          <div class="col-md-5 col-lg-4 col-xl-4 col-sidebar">
+            <div id="sidebar" class="sidebar-left">
+              <div class="sidebar_inner">
+                <div class="list-group no-border list-unstyled">
+                  <span class="list-group-item heading">Modificar Listas</span>
+                  <a href="/mis-listas" class="list-group-item d-flex justify-content-between align-items-center"><span><i class="fa fa-fw fa-bars"></i> Mis Listas </span>
+                    <span class="badge badge-primary badge-pill">{%with total=listas.count %}
+          {{total}}{%endwith%}</span>
+                    </a>
+                  <span class="list-group-item heading">Administrar Cuenta</span>
+                  <a href="/mi-perfil" class="list-group-item"><i class="fa fa-fw fa-pencil"></i> Mi Perfil</a>
+                  <a href="/cambiar-pass" class="list-group-item "><i class="fa fa-fw fa-lock"></i> Cambiar Contraseña</a>
+                </div>
+              </div>
+            </div>
+          </div>
+<div class="col-md-7 col-lg-8 col-xl-8">
+  <div class="page-header bordered">
+    <h1>Editar Cuenta</h1>
+  </div>
+  <form action="index.php">
+    <h3 class="subheadline">Redes Sociales</h3>
+    <ul class="list-group no-border list-unstyled list-v2">
+      <li><i class="fa fa-fw fa-facebook icon"></i> Facebook <a class="btn btn-light">Conectar</a></li>
+    </ul>
+    <h3 class="subheadline">Eliminar Cuenta</h3>
+    <p>Si ya no está interesado en usar su cuenta, haga clic en el botón a continuación para eliminar su cuenta.</p>
+    <a href="#" class="btn btn-lg btn-light">Eliminar Cuenta</a>
+    <hr>
+    <div class="form-group action">
+      <button type="submit" class="btn btn-lg btn-primary">Guardar Cambios</button>
+    </div>
+  </form>
+</div>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

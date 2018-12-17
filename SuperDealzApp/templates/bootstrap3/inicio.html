@@ -1,0 +1,88 @@
+{% extends 'bootstrap3/base_inicio.html' %}
+{% block content %}
+<div id="content" class="pt0 pb0">
+  <div class="feature-box centered gray">
+    <div data-aos="fade-up">
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col col-lg-12 col-xl-10">
+            <div class="main-title"><span>Productos Sugeridos</span></div>
+            <div class="main-title-description">Sugeridos</div>
+            <div class="clearfix"></div>
+            <div class="mt50 mb50">
+              <div class="featured-gallery v2 item-listing grid">
+                <div class="row">
+                  {% for item in lista_productos %}
+                    <div class="col-md-4">
+                      <div class="item">
+                        <div align="center" class="item-image">
+                            <a href="{{ item.url }}">
+                                <img src="{{ item.imagen }}" class="img-fluid" alt="">
+                            </a>
+
+                            <div class="item-meta">
+
+                                <div class="item-price">${{ item.precio }}
+                                    <small> Fecha: {{ item.actualizado|date:"d/m/Y" }} </small>
+                                </div>
+
+                                <div class="item-badges">
+                                    <div class="item-badge-left">Oferta</div>
+                                </div>
+
+                                <a href="" class="save-item">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+
+                            <div class="item-info">
+                                <h3 class="item-details-i">{{ item.nombre }}</h3>
+                                <h3 class="item-title">{{ item.marca }}</h3>
+                                <!-- <h3 class="item-title">{{ item.descripcion }}</h3> -->
+                                <h3 class="item-title">{{ item.medida }}</h3>
+                                <div class="item-location">
+                                    <i class="fa fa-map-marker"></i> {{ item.supermercado }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+              </div>
+            </div>
+            <div class="text-center"><a href="productos" class="btn btn-xlg btn-link">Descubre mas ofertas!</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="feature-box centered ">
+    <div data-aos="fade-up">
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col col-lg-12 col-xl-10">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="content-box">
+                  <div class="image"> <img src="static/img/super_logo/Líder_logo.png" width="100" alt=""> </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="content-box">
+                  <div class="image"> <img src="static/img/super_logo/Logo_Jumbo_Cencosud.png" width="100" alt=""> </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="content-box">
+                  <div class="image"> <img src="static/img/super_logo/Tottus.png" width="100" alt=""> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
